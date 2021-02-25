@@ -613,17 +613,6 @@ mmio_map_region(physaddr_t pa, size_t size)
 	//
 	// Your code here:
 	// cprintf("base: %x\n", base);
-	/*
-	size_t begin = ROUNDDOWN(pa, PGSIZE), end = ROUNDUP(pa + size, PGSIZE);
-	    size_t map_size = end - begin;
-	    if (base + map_size >= MMIOLIM) {
-		panic("overflow MMIOLIM");
-	    }    
-	    boot_map_region(kern_pgdir, base, map_size, pa, PTE_PCD|PTE_PWT|PTE_W);
-	    uintptr_t result = base;
-	    base += map_size;
-	    return (void *)result;
-	*/
 	
 	uintptr_t ret = base;
 	uint32_t low=ROUNDDOWN(pa,PGSIZE), high=ROUNDUP(pa+size,PGSIZE);
